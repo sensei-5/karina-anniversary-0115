@@ -1,10 +1,12 @@
-﻿(() => {
+(() => {
   const cfg = window.KARINA_CONFIG;
   const $ = id => document.getElementById(id);
   const form = $('question-form'), input = $('question'), submit = $('submit-question');
   const fields = $('question-fields'), status = $('connection');
   let user = null, saved = false, saving = false, db;
-  $('ask-title').textContent = cfg.ask.title;
+  $('ask-title').innerHTML = '<span class="ask-brand"></span><span class="ask-sub"></span>';
+  $('ask-title').firstChild.textContent = cfg.ask.brand;
+  $('ask-title').lastChild.textContent = cfg.ask.title;
   $('ask-intro').textContent = cfg.ask.intro;
   $('privacy-note').textContent = cfg.ask.privacy;
   function error(message) { $('ask-error').textContent = message; $('ask-error').hidden = !message; }
