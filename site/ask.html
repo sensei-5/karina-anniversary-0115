@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>提問與祝福｜卡琳娜有一隻貓</title>
+<meta name="description" content="留下想問卡琳娜的問題，或送上一句周年祝福。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath fill='%23ff86b8' d='M5 25V5l12 8h6L35 5v20Q20 42 5 25'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="ask.css">
+<script src="config.js" defer></script><script src="supabase-config.js" defer></script><script src="data.js" defer></script><script src="ask.js" defer></script>
+</head>
+<body class="ask-page">
+<header class="ask-header"><a class="brand" href="index.html">卡琳娜有一隻貓<small>KARINA’S CAT</small></a><a href="index.html#round-5" class="back-to-wall">回卡片牆 ↗</a></header>
+<main class="ask-main">
+  <div class="ask-heading"><p class="ask-round"><i class="cross" aria-hidden="true"></i> ASK KARINA</p><h1 id="ask-title">留一句話給卡琳娜</h1><p id="ask-intro" class="lead"></p></div>
+  <section class="ask-panel" aria-label="提問與祝福表單">
+    <p class="connection" id="connection" role="status" aria-live="polite">尚未連線 · 提問箱尚未開放</p>
+    <div class="login-buttons"><button type="button" id="login-twitch" disabled>Twitch 登入</button><button type="button" id="login-google" disabled>Google 登入</button></div>
+    <p class="login-explanation" id="login-explanation">連線開放後，請先登入再送出。</p>
+    <div class="ask-user" id="ask-user" hidden><span id="ask-name"></span><button id="logout" type="button">登出</button></div>
+    <form id="question-form">
+      <fieldset id="question-fields" disabled>
+        <legend>想留下哪一種訊息？</legend>
+        <div class="ask-kind"><label><input type="radio" name="kind" value="question" checked><span>Q 想問的問題</span></label><label><input type="radio" name="kind" value="blessing"><span>♡ 周年祝福</span></label></div>
+        <label class="message-label" for="question">想問的問題</label>
+        <textarea id="question" rows="5" placeholder="例如：貓咪會不會跑到鍵盤上？" required aria-describedby="count privacy-note"></textarea>
+        <div class="form-meta"><span>每個帳號一筆，可修改</span><span id="count">0 / 300</span></div>
+        <button class="primary" id="submit-question" type="submit" disabled>送出問題</button>
+      </fieldset>
+      <p class="ask-error" id="ask-error" role="alert" hidden></p>
+    </form>
+    <p id="privacy-note" class="privacy-note"></p>
+  </section>
+  <p class="ask-signoff">這一回合，換我聽你們說。</p>
+</main>
+</body></html>

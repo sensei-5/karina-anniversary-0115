@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>卡琳娜有一隻貓｜周年初配信</title>
+<meta name="description" content="卡琳娜有一隻貓周年初配信，一起迎接下一回合。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath fill='%23ff86b8' d='M5 25V5l12 8h6L35 5v20Q20 42 5 25'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><link rel="stylesheet" href="board.css"><link rel="stylesheet" href="stickers.css">
+<script src="config.js" defer></script><script src="supabase-config.js" defer></script><script src="data.js" defer></script><script src="main.js" defer></script><script src="board.js" defer></script><script src="stickers.js" defer></script>
+</head>
+<body>
+<svg class="symbols" aria-hidden="true"><defs>
+<symbol id="cat" viewBox="0 0 200 180"><path d="M30 70 22 10 78 42Q100 36 122 42L178 10 170 70Q186 100 172 132Q150 172 100 172Q50 172 28 132Q14 100 30 70Z" fill="#0a0a0d" stroke="#ff86b8" stroke-width="7" stroke-linejoin="round"/><path d="M40 30 66 46 44 58ZM160 30 134 46 156 58Z" fill="#ffb3d4"/><g class="eyes"><path d="M58 98Q72 86 86 98" stroke="white" stroke-width="8" fill="none" stroke-linecap="round"/><path d="m114 92 30 8-30 6Z" fill="white"/></g><path d="M94 118h12l-6 8Z" fill="#ff86b8"/><path d="M100 126Q92 136 84 130M100 126Q108 136 116 130" stroke="white" stroke-width="5" fill="none" stroke-linecap="round"/><path d="m22 112 40 6m-38 12 38-4m116-14-40 6m38 12-38-4" stroke="#ffb3d4" stroke-width="4"/><g fill="#ff86b8" opacity=".5"><circle cx="60" cy="122" r="9"/><circle cx="140" cy="122" r="9"/></g></symbol>
+<symbol id="paw" viewBox="0 0 100 100"><g fill="currentColor"><ellipse cx="50" cy="66" rx="24" ry="20"/><ellipse cx="22" cy="40" rx="10" ry="13"/><ellipse cx="40" cy="24" rx="10" ry="13"/><ellipse cx="60" cy="24" rx="10" ry="13"/><ellipse cx="78" cy="40" rx="10" ry="13"/></g></symbol>
+</defs></svg>
+<a class="skip" href="#round-1">跳至主要內容</a>
+<header><a class="brand" href="#round-1"><svg aria-hidden="true"><use href="#cat"/></svg><span>卡琳娜有一隻貓<small>KARINA’S CAT</small></span></a><button id="present-toggle" aria-pressed="false">展示模式 <span aria-hidden="true">↗</span></button></header>
+<nav aria-label="章節導覽" id="chapters"></nav>
+<main id="rounds"></main>
+<footer><span>卡琳娜有一隻貓 · 周年初配信</span><span>有你在，就有下一回合。</span></footer>
+<div class="presentation-progress" hidden><span id="position" aria-live="polite"></span></div>
+<dialog id="card-zoom" class="card-zoom" aria-labelledby="zoom-name" aria-describedby="zoom-text">
+  <div class="zoom-top"><span id="zoom-type" class="card-type"></span><button type="button" id="zoom-close" aria-label="關閉放大卡片">關閉 ×</button></div>
+  <div class="zoom-person"><span id="zoom-avatar" class="wall-avatar" aria-hidden="true"></span><h2 id="zoom-name"></h2></div>
+  <p id="zoom-text" class="zoom-text"></p><div class="zoom-controls"><button id="zoom-prev" type="button">← 上一則</button><span id="zoom-position" aria-live="polite"></span><button id="zoom-next" type="button">下一則 →</button></div>
+  <p class="zoom-hint">← → 切換卡片 · Esc 關閉</p>
+</dialog>
+<dialog id="sticker-zoom" class="sticker-zoom" aria-labelledby="sticker-zoom-name">
+  <div class="sticker-zoom-top"><span id="sticker-zoom-position"></span><button id="sticker-zoom-close" type="button">關閉 ×</button></div>
+  <img id="sticker-zoom-image" alt=""><h2 id="sticker-zoom-name"></h2>
+  <div class="sticker-zoom-controls"><button id="sticker-zoom-prev" type="button">← 上一張</button><button id="sticker-zoom-next" type="button">下一張 →</button></div>
+</dialog>
+</body></html>

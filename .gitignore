@@ -1,0 +1,5 @@
+.playwright-mcp/
+.taste-skill/
+site/qa/
+node_modules/
+*.log
