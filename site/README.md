@@ -1,4 +1,4 @@
-﻿# 卡琳娜周年風格樣板（規格更新 #1）
+# 卡琳娜周年風格樣板（規格更新 #1）
 
 在專案根目錄執行 `node site/serve.cjs`，開啟 http://127.0.0.1:8080 。
 展示模式：http://127.0.0.1:8080/?present=1 。按左右鍵或 1–6 切章，輸入欄位內不攔截鍵盤。手機展示模式可在章節內往下捲動。
@@ -11,7 +11,7 @@
 Noto Sans TC 由 Google Fonts 載入，離線時退回 Microsoft JhengHei / sans-serif。
 
 ## 抽獎展示
-六章順序：READY UP → PLAYER PROFILE → MATCH HISTORY → ASK KARINA → LUCKY DRAW → NEXT ROUND。
+六章順序：READY UP → PLAYER PROFILE → MATCH HISTORY → ASK & WISH → LUCKY DRAW → NEXT ROUND。
 兩池分區、大獎最醒目，獎項數量於 config.draw 管理。bonusAchieved 預設 false，大獎 ×1 並顯示「11 月積分達標加碼 +1」；改為 true 後顯示 ×2 與達成提示。
 抽獎規則待確認。本階段僅獎品展示，沒有抽籤或抽獎動畫。
 
@@ -61,7 +61,7 @@ check.cjs / contact-sheet.cjs 的 Playwright / sharp 路徑為本環境 runtime�
 - 新增待補：正式 ask.html 網址與 QR 圖片、Supabase SQL 更新／公開展示政策核對、正式投稿資料。目前不是已上線的真實觀眾牆。
 
 ## 規格更新 #3：七章與貼圖牆
-最新章節：READY UP → PLAYER PROFILE → MATCH HISTORY → STICKER WALL → ASK KARINA → LUCKY DRAW → NEXT ROUND。
+最新章節：READY UP → PLAYER PROFILE → MATCH HISTORY → STICKER WALL → ASK & WISH → LUCKY DRAW → NEXT ROUND。
 - 展示頁：http://127.0.0.1:8080/index.html?present=1
 - 貼圖牆：http://127.0.0.1:8080/index.html?present=1#round-4
 - 提問卡片牆改為：http://127.0.0.1:8080/index.html?present=1#round-5
@@ -85,3 +85,6 @@ READY UP 使用淺粉相紙框呈現 profilepicture.jpeg 草圖，web JPEG 為 1
 
 最新驗收：`node site/qa/check.cjs`，截圖與結果位於 qa/update3/。QA 腳本使用本機 8081 測試伺服器，工具路徑為本環境 runtime；其他機器請調整。歷次 qa/update1、update2 等保留為歷史紀錄。
 新增待補：正式頭像（替換草圖）、貼圖中文名稱／副標最終確認；活動時間年份、人物設定、回顧影音、抽獎規則、正式 QR 與 Supabase/OAuth 等既有待補維持。
+
+## 驗收小修正
+章節英文已統一為 ASK & WISH，中文仍為「觀眾提問箱」。放大卡片底部鍵盤提示移除，鍵盤功能保持。玩家卡新增「粉絲稱呼」「喜歡吃的東西」，都在 config.js 的 PLAYER PROFILE fields 內，預設「待確認」。此次截圖與自檢位於 qa/minor-fixes/。

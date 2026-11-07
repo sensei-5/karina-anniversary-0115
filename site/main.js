@@ -1,4 +1,4 @@
-﻿const config = window.KARINA_CONFIG;
+const config = window.KARINA_CONFIG;
 const escapeHTML = value => String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const nav = document.querySelector('#chapters');
 const rounds = document.querySelector('#rounds');
@@ -24,9 +24,9 @@ function historyContent(section) {
   return `<div class="history-grid">${section.memories.map(m=>`<article class="memory-card"><div class="memory-media">${m.video ? `<video controls playsinline preload="none" src="${escapeHTML(m.video)}" aria-label="${escapeHTML(m.title)}影片"></video>` : m.image ? `<img src="${escapeHTML(m.image)}" alt="${escapeHTML(m.title)}">` : '<span>圖片／短片待補</span><svg aria-hidden="true"><use href="#paw"/></svg>'}</div>
     <h3>${escapeHTML(m.title)}</h3><p>${escapeHTML(m.copy || '回顧文案待補')}</p>${m.audioSrc ? `<audio controls preload="none" src="${escapeHTML(m.audioSrc)}" aria-label="${escapeHTML(m.title)}語音"></audio>` : '<p class="audio-placeholder">語音待補</p>'}</article>`).join('')}</div>`;
 }
-function questionsContent() {
+function questionsContent(section) {
   const board = config.board;
-  return `<div class="board-heading"><div><h2>ASK KARINA<span>｜觀眾提問箱</span></h2><p class="board-count" id="board-count">共 0 則</p><p class="board-source" id="board-source" role="status">MOCK 示範資料 · 非真實投稿</p></div>
+  return `<div class="board-heading"><div><h2>${escapeHTML(section.label)}<span>｜觀眾提問箱</span></h2><p class="board-count" id="board-count">共 0 則</p><p class="board-source" id="board-source" role="status">MOCK 示範資料 · 非真實投稿</p></div>
     <div class="board-entry"><a class="button primary" href="${escapeHTML(board.askUrl)}" target="_blank" rel="noopener">我要投問題 ↗</a><div class="qr-slot">${board.qrImage ? `<img src="${escapeHTML(board.qrImage)}" alt="掃描 QR code 前往提問表單">` : '<span aria-hidden="true">＋</span><span>QR code 待補</span>'}</div></div></div>
     <p class="board-help">點卡片放大閱讀 · Q 問題 / 爪印祝福</p><div class="board-cloud" id="board-cloud" aria-label="觀眾問題與祝福卡片牆"></div><p id="board-empty" hidden>還沒有投稿，歡迎留下第一句話。</p>`;
 }
@@ -54,13 +54,13 @@ config.sections.forEach((section, index) => {
     case 'PLAYER PROFILE': content = profileContent(section); break;
     case 'MATCH HISTORY': content = historyContent(section); break;
     case 'STICKER WALL': content = stickersContent(); break;
-    case 'ASK KARINA': content = questionsContent(section); break;
+    case 'ASK & WISH': content = questionsContent(section); break;
     case 'LUCKY DRAW': content = drawContent(); break;
     default: content = `<div class="placeholder"><p>${escapeHTML(section.placeholder)}</p></div>${socialLinks()}<p class="social-status">社群網址：${escapeHTML(config.socialStatus)}</p>`;
   }
-  if(index > 0 && section.label !== 'ASK KARINA') content = `<div class="section-content"><h2>${escapeHTML(section.title)}</h2><p class="lead">${escapeHTML(section.text)}</p>${content}</div>`;
-  if(section.label === 'ASK KARINA') content = `<div class="section-content">${content}</div>`;
-  rounds.insertAdjacentHTML('beforeend', `<section class="round ${section.label === 'LUCKY DRAW' ? 'draw-round' : section.label === 'ASK KARINA' ? 'board-round' : section.label === 'STICKER WALL' ? 'sticker-round' : ''}" id="round-${index+1}" aria-label="${escapeHTML(section.label)}"><div class="round-top"><span class="round-number"><i class="cross" aria-hidden="true"></i> ROUND ${n} / ${escapeHTML(section.label)}</span><span class="sample-note">STYLE PREVIEW</span></div>${content}<svg class="paw" aria-hidden="true"><use href="#paw"/></svg></section>`);
+  if(index > 0 && section.label !== 'ASK & WISH') content = `<div class="section-content"><h2>${escapeHTML(section.title)}</h2><p class="lead">${escapeHTML(section.text)}</p>${content}</div>`;
+  if(section.label === 'ASK & WISH') content = `<div class="section-content">${content}</div>`;
+  rounds.insertAdjacentHTML('beforeend', `<section class="round ${section.label === 'LUCKY DRAW' ? 'draw-round' : section.label === 'ASK & WISH' ? 'board-round' : section.label === 'STICKER WALL' ? 'sticker-round' : ''}" id="round-${index+1}" aria-label="${escapeHTML(section.label)}"><div class="round-top"><span class="round-number"><i class="cross" aria-hidden="true"></i> ROUND ${n} / ${escapeHTML(section.label)}</span><span class="sample-note">STYLE PREVIEW</span></div>${content}<svg class="paw" aria-hidden="true"><use href="#paw"/></svg></section>`);
 });
 const sections = [...document.querySelectorAll('.round')];
 let current = Math.max(0, sections.findIndex(s => '#'+s.id === location.hash));

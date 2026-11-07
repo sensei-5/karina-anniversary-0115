@@ -39,7 +39,7 @@ window.KARINA_CONFIG = {
   sections: [
     { label: 'READY UP', title: '周年開場', text: '這一回合，換你們認識新的我。', placeholder: '活動資訊與開場畫面，待風格確認後展開。', media: '' },
     { label: 'PLAYER PROFILE', title: '玩家檔案', text: '關於卡琳娜，還有家裡那隻貓。',
-      fields: [ {label:'主播稱呼',value:'卡琳娜'}, {label:'常玩的 FPS',value:'待補'}, {label:'遊戲定位或打法',value:'待補'}, {label:'開台風格',value:'待補'}, {label:'貓咪小檔案',value:'待補'}, {label:'除了打遊戲，我還喜歡',value:'待補'} ],
+      fields: [ {label:'主播稱呼',value:'卡琳娜'}, {label:'粉絲稱呼',value:'待確認'}, {label:'常玩的 FPS',value:'待補'}, {label:'遊戲定位或打法',value:'待補'}, {label:'開台風格',value:'待補'}, {label:'貓咪小檔案',value:'待補'}, {label:'除了打遊戲，我還喜歡',value:'待補'}, {label:'喜歡吃的東西',value:'待確認'} ],
       prompts: ['我為什麼開台', 'FPS 最讓我上癮的是什麼', '聊天室最常看到我哪一面'],
       opening: '嗨，我是卡琳娜。平常你們可能比較常看到我在打槍，今天想趁周年，跟你們聊聊我怎麼開始開台、為什麼那麼喜歡 FPS，還有這段時間我最想記下來的幾個瞬間。當然，貓也有牠自己的出場時間。', media: '' },
     { label: 'MATCH HISTORY', title: '周年戰績回顧', text: '有些瞬間，值得再看一次。',
@@ -49,7 +49,7 @@ window.KARINA_CONFIG = {
         { title: '一個我到現在還記得的聊天室瞬間', copy: '', image: '', video: '', audioSrc: '' }
       ] },
     { label: 'STICKER WALL', title: '貼圖牆', text: '為了這身新皮，委託了一整排貼圖。' },
-    { label: 'ASK KARINA', title: '觀眾提問箱', text: '問題也好，周年祝福也好，我都想聽。', placeholder: '登入後，每個帳號可送出一筆，送出後可以修改。', media: '' },
+    { label: 'ASK & WISH', title: '觀眾提問箱', text: '問題也好，周年祝福也好，我都想聽。', placeholder: '登入後，每個帳號可送出一筆，送出後可以修改。', media: '' },
     { label: 'LUCKY DRAW', title: '周年抽獎', text: '這一回合，戰利品準備好了。' },
     { label: 'NEXT ROUND', title: '下一回合', text: '謝謝你們，陪我打到這一回合。', placeholder: '即日起開始在 YouTube 更新 Shorts。其餘新規劃，敬請期待。', media: '' }
   ]
