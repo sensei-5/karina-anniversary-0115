@@ -25,7 +25,25 @@ window.KARINA_CONFIG = {
   },
   maxMessage: 300,
   draw: {
-    rules: '待確認',
+    rules: {
+      title: '抽獎規則',
+      eligibility: '兩個獎池都必須追隨本頻道，才有抽獎資格。',
+      subscriber: {
+        title: '訂閱者獎池',
+        entry: '擷取名單當下為本頻道自主訂閱者，自動參加，不需輸入指令。',
+        tickets: [{ label: '層級 1', count: 1 }, { label: '層級 2', count: 2 }, { label: '層級 3', count: 6 }],
+        ticketBasis: '以擷取名單當下的訂閱層級為準。'
+      },
+      participation: {
+        title: '參加獎池', beforeCommand: '登記時間內，在聊天室輸入', command: '!抽獎',
+        afterCommand: '即可參加，有沒有訂閱都可以。',
+        duplicate: '同一帳號輸入多次只算一次。',
+        ticketLabel: '每人一律', ticketCount: 1, ticketBasis: '不論是否訂閱、層級。',
+        registrationLabel: '登記時間', registrationTime: '待補'
+      },
+      subscriptionDefinition: '自主訂閱＝自己付費訂閱本頻道；Prime 訂閱、收到別人贈訂都不算，送出贈訂也不會因此多拿抽獎券。',
+      ticketRestriction: '抽獎券不能累加、轉讓或合併。'
+    },
     subscriberPool: '訂閱者獎池', participationPool: '參加獎池',
     bonusAchieved: false, // 11 月積分達標後改為 true，大獎數量由 ×1 變成 ×2。
     bonusNote: '11 月積分達標加碼 +1', achievedNote: '11 月積分目標已達成，加碼 +1',
@@ -39,9 +57,8 @@ window.KARINA_CONFIG = {
   sections: [
     { label: 'READY UP', title: '周年開場', text: '這一回合，換你們認識新的我。', placeholder: '活動資訊與開場畫面，待風格確認後展開。', media: '' },
     { label: 'PLAYER PROFILE', title: '玩家檔案', text: '關於卡琳娜，還有家裡那隻貓。',
-      fields: [ {label:'主播稱呼',value:'卡琳娜'}, {label:'粉絲稱呼',value:'待確認'}, {label:'常玩的 FPS',value:'待補'}, {label:'遊戲定位或打法',value:'待補'}, {label:'開台風格',value:'待補'}, {label:'貓咪小檔案',value:'待補'}, {label:'除了打遊戲，我還喜歡',value:'待補'}, {label:'喜歡吃的東西',value:'待確認'} ],
-      prompts: ['我為什麼開台', 'FPS 最讓我上癮的是什麼', '聊天室最常看到我哪一面'],
-      opening: '嗨，我是卡琳娜。平常你們可能比較常看到我在打槍，今天想趁周年，跟你們聊聊我怎麼開始開台、為什麼那麼喜歡 FPS，還有這段時間我最想記下來的幾個瞬間。當然，貓也有牠自己的出場時間。', media: '' },
+      fields: [ {label:'主播稱呼',value:['卡琳娜', 'Karina', '卡姐']}, {label:'粉絲稱呼',value:'待補'}, {label:'常玩的 FPS',value:'待補'}, {label:'遊戲定位或打法',value:'待補'}, {label:'開台風格',value:'待補'}, {label:'貓咪小檔案',value:'待補'}, {label:'除了打遊戲，我還喜歡',value:'待補'}, {label:'喜歡吃的東西',value:'待補'} ],
+      media: '' },
     { label: 'MATCH HISTORY', title: '周年戰績回顧', text: '有些瞬間，值得再看一次。',
       memories: [
         { title: '第一次開台', copy: '', image: '', video: '', audioSrc: '' },

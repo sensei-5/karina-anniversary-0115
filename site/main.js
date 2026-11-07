@@ -16,8 +16,7 @@ function heroContent() {
       <div class="art-caption"><span>SWEET × SPICY</span><svg class="cat-sticker" aria-hidden="true"><use href="#cat"/></svg></div><div class="art-bottom"><span>陪你打到下一回合。</span><span>MEOW!</span></div></div></div>`;
 }
 function profileContent(section) {
-  return `<div class="profile-layout"><div class="player-card"><div class="player-intro"><img src="${escapeHTML(config.images.profile)}" alt="卡琳娜紅色機能服全身新皮立繪"><dl>${section.fields.map(f=>`<div><dt>${escapeHTML(f.label)}</dt><dd>${escapeHTML(f.value)}</dd></div>`).join('')}</dl></div>
-    <details class="speaking-notes"><summary>開場講稿與聊天起點</summary><p>${escapeHTML(section.opening)}</p><ul>${section.prompts.map(p=>`<li>${escapeHTML(p)}</li>`).join('')}</ul></details></div>
+  return `<div class="profile-layout"><div class="player-card"><div class="player-intro"><img src="${escapeHTML(config.images.profile)}" alt="卡琳娜紅色機能服全身新皮立繪"><dl>${section.fields.map(f=>`<div><dt>${escapeHTML(f.label)}</dt><dd${Array.isArray(f.value) ? ' class="profile-names"' : ''}>${Array.isArray(f.value) ? f.value.map(name=>`<span>${escapeHTML(name)}</span>`).join('') : escapeHTML(f.value)}</dd></div>`).join('')}</dl></div></div>
     <figure class="character-sheet"><figcaption>人物設定圖</figcaption><img src="${escapeHTML(config.images.characterSheet)}" alt="人物設定圖佔位：卡琳娜新皮全身立繪"><p>${escapeHTML(config.images.characterSheetStatus)}</p></figure></div>`;
 }
 function historyContent(section) {
@@ -39,11 +38,28 @@ function prizeContent(prize) {
   const quantity = prize.quantity + (prize.bonus && config.draw.bonusAchieved ? prize.bonus : 0);
   return `<article class="loot-card ${escapeHTML(prize.rarity)}${prize.framed ? ' framed' : ''}"><span class="loot-quantity" aria-label="數量 ${quantity}">×${quantity}</span><div class="loot-image"><img src="${escapeHTML(prize.image)}" alt="${escapeHTML(prize.name)}${prize.framed ? '商品參考圖' : '去背商品圖'}"></div><div class="loot-info"><p class="loot-tier">${escapeHTML(prize.tier)}</p><h4>${escapeHTML(prize.name)}</h4>${prize.bonus ? `<p class="bonus-note${config.draw.bonusAchieved ? ' achieved' : ''}">${escapeHTML(config.draw.bonusAchieved ? config.draw.achievedNote : config.draw.bonusNote)}</p>` : ''}</div></article>`;
 }
+function drawRulesContent() {
+  const rules = config.draw.rules;
+  return `<section class="draw-rules-panel" aria-label="${escapeHTML(rules.title)}">
+    <div class="rules-heading"><h3>${escapeHTML(rules.title)}</h3><p>${escapeHTML(rules.eligibility)}</p></div>
+    <div class="rules-pools">
+      <div class="rule-pool subscriber-rules"><h4>${escapeHTML(rules.subscriber.title)}</h4><p>${escapeHTML(rules.subscriber.entry)}</p>
+        <div class="ticket-row">${rules.subscriber.tickets.map(ticket=>`<div class="ticket"><span>${escapeHTML(ticket.label)}</span><strong>${escapeHTML(ticket.count)}<small> 張</small></strong></div>`).join('')}</div>
+        <p class="ticket-basis">${escapeHTML(rules.subscriber.ticketBasis)}</p></div>
+      <div class="rule-pool participation-rules"><h4>${escapeHTML(rules.participation.title)}</h4>
+        <p>${escapeHTML(rules.participation.beforeCommand)} <code class="chat-command">${escapeHTML(rules.participation.command)}</code> ${escapeHTML(rules.participation.afterCommand)}</p>
+        <p class="dedup-rule">${escapeHTML(rules.participation.duplicate)}</p>
+        <div class="entry-ticket"><div class="ticket"><span>${escapeHTML(rules.participation.ticketLabel)}</span><strong>${escapeHTML(rules.participation.ticketCount)}<small> 張</small></strong></div><div><p class="ticket-basis">${escapeHTML(rules.participation.ticketBasis)}</p><p class="registration-time">${escapeHTML(rules.participation.registrationLabel)}：${escapeHTML(rules.participation.registrationTime)}</p></div></div>
+      </div>
+    </div>
+    <div class="rules-foot"><p>${escapeHTML(rules.subscriptionDefinition)}</p><p class="ticket-restriction">${escapeHTML(rules.ticketRestriction)}</p></div>
+  </section>`;
+}
 function drawContent() {
   const entry = config.draw.participationPrize;
   return `<div class="loot-pools"><div class="subscriber-pool"><h3>${escapeHTML(config.draw.subscriberPool)}</h3><div class="subscriber-grid">${config.draw.subscriberPrizes.map(prizeContent).join('')}</div></div>
     <div class="participation-pool"><h3>${escapeHTML(config.draw.participationPool)}</h3><article class="loot-card participation"><span class="loot-quantity" aria-label="數量 ${entry.quantity}">×${entry.quantity}</span><div class="mycard-art" aria-hidden="true"><span>MyCard</span><strong>${escapeHTML(entry.points)}</strong><span>點</span></div><div class="loot-info"><p class="loot-tier">${escapeHTML(entry.tier)}</p><h4>${escapeHTML(entry.name)}</h4></div></article></div></div>
-    <p class="draw-rules"><strong>抽獎規則</strong> ${escapeHTML(config.draw.rules)}</p>`;
+    ${drawRulesContent()}`;
 }
 config.sections.forEach((section, index) => {
   const n = String(index + 1).padStart(2, '0');

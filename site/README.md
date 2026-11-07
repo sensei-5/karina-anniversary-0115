@@ -13,7 +13,7 @@ Noto Sans TC 由 Google Fonts 載入，離線時退回 Microsoft JhengHei / sans
 ## 抽獎展示
 六章順序：READY UP → PLAYER PROFILE → MATCH HISTORY → ASK & WISH → LUCKY DRAW → NEXT ROUND。
 兩池分區、大獎最醒目，獎項數量於 config.draw 管理。bonusAchieved 預設 false，大獎 ×1 並顯示「11 月積分達標加碼 +1」；改為 true 後顯示 ×2 與達成提示。
-抽獎規則待確認。本階段僅獎品展示，沒有抽籤或抽獎動畫。
+抽獎規則已依更新 #4 放入 config.draw.rules；登記時間待補。本階段僅獎品展示，沒有抽籤或抽獎動畫。
 
 ## 去背
 原始圖片保持唯讀；qa/update1/original-hashes.json 留存處理前 SHA256，比對確認一致。
@@ -35,7 +35,7 @@ Python Pillow + numpy 腳本：tools/prepare_assets.py。只讀 assets 原檔、
 - 三個社群網址及直播目的地發布前核對。
 - 玩家詳細資料、貓咪資料與正式人物設定圖。
 - 三張回顧卡文案、圖片／短片、語音檔（audioSrc 空值顯示「語音待補」）。
-- 抽獎規則與 11 月積分達標結果。
+- 抽獎登記時間與 11 月積分達標結果。
 - 更多直播新規劃與周年感謝正式文案。
 - 正式 Supabase URL、publishable key、OAuth 設定、字數上限與收件規則。
 
@@ -84,7 +84,13 @@ READY UP 使用淺粉相紙框呈現 profilepicture.jpeg 草圖，web JPEG 為 1
 靜態伺服器增加 JPG／GIF 等 MIME，預設 8080；如需其他連接埠可設定環境變數 KARINA_PREVIEW_PORT。
 
 最新驗收：`node site/qa/check.cjs`，截圖與結果位於 qa/update3/。QA 腳本使用本機 8081 測試伺服器，工具路徑為本環境 runtime；其他機器請調整。歷次 qa/update1、update2 等保留為歷史紀錄。
-新增待補：正式頭像（替換草圖）、貼圖中文名稱／副標最終確認；活動時間年份、人物設定、回顧影音、抽獎規則、正式 QR 與 Supabase/OAuth 等既有待補維持。
+新增待補：正式頭像（替換草圖）、貼圖中文名稱／副標最終確認；活動時間年份、人物設定、回顧影音、抽獎登記時間、正式 QR 與 Supabase/OAuth 等既有待補維持。
 
 ## 驗收小修正
-章節英文已統一為 ASK & WISH，中文仍為「觀眾提問箱」。放大卡片底部鍵盤提示移除，鍵盤功能保持。玩家卡新增「粉絲稱呼」「喜歡吃的東西」，都在 config.js 的 PLAYER PROFILE fields 內，預設「待確認」。此次截圖與自檢位於 qa/minor-fixes/。
+章節英文已統一為 ASK & WISH，中文仍為「觀眾提問箱」。放大卡片底部鍵盤提示移除，鍵盤功能保持。玩家卡新增「粉絲稱呼」「喜歡吃的東西」，都在 config.js 的 PLAYER PROFILE fields 內，預設「待補」。此次截圖與自檢位於 qa/minor-fixes/。
+
+## 規格更新 #4
+PLAYER PROFILE 稱呼陣列為「卡琳娜」「Karina」「卡姐」，其餘七欄統一「待補」。講稿區塊、opening 與 prompts 已移除；玩家卡與人物設定圖等高呈現。
+LUCKY DRAW 已加入確定規則，全部文字與票數集中於 config.draw.rules：兩池均須追隨；自主訂閱者依擷取名單當下層級自動參加，層級 1／2／3 為 1／2／6 張；參加獎登記期間輸入 !抽獎，每人 1 張、重複輸入僅算一次。Prime／收到的贈訂不算自主訂閱，送贈訂不額外加券，票券不能累加／轉讓／合併。
+抽獎規則不再待補，登記時間仍待補；活動時間年份、玩家詳細資料、正式人物設定、回顧影音、QR、Supabase 等既有項目仍待補。
+本次 Playwright：`node site/qa/update4/check.cjs`（測試伺服器 8083），截圖與結果在 qa/update4/。桌機 1920×1080 玩家檔案與獎品＋規則各一屏完整；手機 375×812 直向捲動，無橫向溢出、頁面錯誤。
